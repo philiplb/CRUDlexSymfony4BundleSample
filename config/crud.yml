@@ -1,0 +1,123 @@
+library:
+  label: Library
+  table: library
+  childrenLabelFields:
+      book: title
+  filter: [isOpenOnSundays, name, library_book]
+  pageSize: 5
+  initialSortField: name
+  initialSortAscending: false
+  fields:
+    name:
+      type: text
+      label: Name
+      required: true
+      unique: true
+    type:
+      type: set
+      label: Type
+      items: [small,medium,large]
+    opening:
+      type: datetime
+      label: Opening
+    isOpenOnSundays:
+      type: boolean
+      label: 'Is open on sundays'
+    library_book:
+      type: many
+      label: Books
+      many:
+        entity: book
+        nameField: title
+        thisField: library
+        thatField: book
+
+book:
+  label: Book
+  label_de: Bücher
+  table: book
+  pageSize: 5
+  listFields: [author, title, library, secondLibrary]
+  filter: [author, title, library]
+  optimisticLocking: false
+  hardDeletion: true
+  fields:
+    title:
+      type: wysiwym
+      label: Title
+      label_de: Titel
+      required: true
+    author:
+      type: wysiwym
+      label: Author
+      description: The Author of the Book
+      required: true
+    pages:
+      type: integer
+      label: Pages
+      required: true
+    release:
+      type: date
+      label: Release
+    library:
+      type: reference
+      label: Library
+      reference:
+        nameField: name
+        entity: library
+      required: true
+    secondLibrary:
+      type: reference
+      label: Second Library
+      reference:
+        nameField: name
+        entity: library
+      unique: true
+    price:
+      type: float
+      label: Price
+      floatStep: 0.1
+    summary:
+      type: wysiwym
+      format: html
+      label: Summary
+    cover:
+      type: file
+      path: upload
+user:
+  label: User
+  table: user
+  listFields: [id, email, user_role]
+  filter: [email]
+  fields:
+    email:
+      type: text
+      label: E-Mail
+      required: true
+      unique: true
+    user_role:
+      type: many
+      label: Roles
+      many:
+        entity: role
+        nameField: role
+        thisField: user
+        thatField: role
+    password:
+      type: text
+      label: Password Hash
+      description: 'Set this to your desired password. Will be automatically converted to an hash value not meant to be readable.'
+      required: true
+    salt:
+      type: text
+      label: Password Salt
+      description: 'Auto populated field on user creation. Used internally.'
+      required: false
+role:
+  label: Roles
+  table: role
+  fields:
+    role:
+      type: text
+      label: Role
+      required: true
