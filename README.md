@@ -23,6 +23,12 @@ Initially, the sample data structure must be imported like this with the passwor
 mysql -u root -P 13306 -h 127.0.0.1 -p crud < CRUDlexSample.sql
 ```
 
+The dependencies have to be fetched once via:
+
+```bash
+composer update
+```
+
 If the build process happened once, it can be omitted and just run:
 
 ```bash
