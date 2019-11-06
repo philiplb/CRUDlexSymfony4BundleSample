@@ -4,6 +4,7 @@
     "keywords": ["symfony4", "crudlex", "crud", "admin generator"],
     "homepage": "https://github.com/philiplb/CRUDlexSymfony4BundleSample",
     "license": "MIT",
+    "minimum-stability": "dev",
     "repositories": [
         {
             "type": "vcs",
@@ -15,7 +16,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/doctrine-bundle": "^1.9",
-        "philiplb/crudlexsymfony4bundle": "0.1.0",
+        "philiplb/crudlexsymfony4bundle": "0.2.x-dev",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/console": "^4.1",
         "symfony/flex": "^1.0",
