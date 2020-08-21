@@ -13,7 +13,7 @@ your desired CRUDlex version. The master is always in sync with the CRUDlex mast
 You can build and run the a Docker container via Docker Compose like this:
 
 ```bash
-docker-compose -f docker/docker-compose.yml up --build
+docker-compose -f .docker/dev.docker-compose.yml up --build
 ```
 
 Initially, the sample data structure must be imported like this with the password
