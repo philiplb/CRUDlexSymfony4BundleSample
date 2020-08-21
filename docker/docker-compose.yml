@@ -1,5 +1,14 @@
 version: '3'
 services:
+  mysql:
+    image: mariadb:10.4
+    ports:
+      - 13306:3306
+    environment:
+      MYSQL_DATABASE: crud
+      MYSQL_USER: app
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
   app:
     build:
       context: ..
@@ -8,15 +17,9 @@ services:
     ports:
       - 8080:80
     volumes:
-      - ..:/srv/app
+      - ..:/srv/app:delegated
     links:
       - mysql
-  mysql:
-    image: mysql:5.7
-    ports:
-      - 13306:3306
-    environment:
-      MYSQL_DATABASE: crud
-      MYSQL_USER: app
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: password
+    depends_on:
+      - mysql
+    command: bash -c ./docker/serve.sh
